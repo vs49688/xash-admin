@@ -109,7 +109,13 @@ Directory: "mymod/maps" - Maps listed: 3
 
 ## Screenshots
 
-![Screenshot](./Screenshot_20260503_024443.png)
+### In a Terminal
+
+![Screenshot of xash-admin in a Terminal](./Screenshot_20260503_024443.png)
+
+### Via ttyd
+
+![Screenshot of xash-admin via ttyd](./Screenshot_20260503_024835.png)
 
 ## License
 
