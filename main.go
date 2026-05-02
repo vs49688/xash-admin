@@ -242,7 +242,7 @@ func run(ctx context.Context, command *cli.Command) error {
 	if !command.IsSet("history-file") {
 		hf, err := xdg.DataFile("xash-admin/history.tmp")
 		if err != nil {
-			_, _ = fmt.Fprintf(os.Stderr, "unable to create default history file, history will not be saved: %s", err.Error())
+			_, _ = fmt.Fprintf(os.Stderr, "unable to create default history file, history will not be saved: %s\n", err.Error())
 		}
 		historyFile = hf
 	}
