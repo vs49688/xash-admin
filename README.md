@@ -107,6 +107,10 @@ Mod_TestBmodelLumps: 2 warning(s)
 Directory: "mymod/maps" - Maps listed: 3
 ```
 
+## Screenshots
+
+![Screenshot](./Screenshot_20260503_024443.png)
+
 ## License
 
 GNU General Public License, version 2 only. See [COPYING](COPYING).
