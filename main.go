@@ -34,22 +34,66 @@ version 2 as published by the Free Software Foundation.
 `, AppName, config.AppVersion)
 }
 
+func pcCVarEnum(name string, values ...string) readline.PrefixCompleterInterface {
+	pcItems := make([]readline.PrefixCompleterInterface, len(values))
+	for i, item := range values {
+		pcItems[i] = readline.PcItem(item)
+	}
+
+	return readline.PcItem(name, pcItems...)
+}
+
+func pcCVar01(name string) readline.PrefixCompleterInterface {
+	return pcCVarEnum(name, "0", "1")
+}
+
 var completer = readline.NewPrefixCompleter(
+	//
+	// System completions
+	//
 	readline.PcItem("!!exit"),
 	readline.PcItem("!setpassword"),
 	readline.PcItem("!sleep"),
+
+	//
+	// Server completions
+	//
 	readline.PcItem("changelevel"),
 	readline.PcItem("map"),
+	pcCVarEnum("maps", "*"),
 	readline.PcItem("status"),
 	readline.PcItem("serverinfo"),
-	readline.PcItem("sv_cheats",
-		readline.PcItem("0"),
-		readline.PcItem("1"),
-	),
+
+	pcCVar01("sv_aim"),
+	pcCVar01("sv_cheats"),
+	pcCVarEnum("sv_maxspeed", "270", "320"), // 270 = MP default, 320 = SP default
+
+	pcCVar01("mp_autocrosshair"),
+	pcCVar01("mp_allowmonsters"),
+	pcCVar01("mp_falldamage"),
+	readline.PcItem("mp_fraglimit"),
+	pcCVar01("mp_friendlyfire"),
+	pcCVar01("mp_flashlight"),
+	pcCVar01("mp_footsteps"),
+	pcCVar01("mp_forcerespawn"),
 	readline.PcItem("mp_timeleft"),
 	readline.PcItem("mp_timelimit"),
+	pcCVar01("mp_weaponstay"),
+
+	readline.PcItem("hostname"),
+	readline.PcItem("maxplayers"),
+	pcCVar01("pausable"),
+	pcCVar01("teamplay"),
+
+	readline.PcItem("exec"),
 	readline.PcItem("allow_spectators"),
 	readline.PcItem("rcon_password"),
+
+	//
+	// Mod Completions
+	//
+
+	// metamod
 	readline.PcItem("meta",
 		readline.PcItem("version"),
 		readline.PcItem("game"),
@@ -69,17 +113,15 @@ var completer = readline.NewPrefixCompleter(
 		readline.PcItem("force_unload"),
 		readline.PcItem("require"),
 	),
+
+	// jk_botti
 	readline.PcItem("jk_botti",
-		readline.PcItem("show_waypoints",
-			readline.PcItem("0"),
-			readline.PcItem("1"),
-		),
+		pcCVar01("show_waypoints"),
 	),
-	readline.PcItem("jk_botti_trace",
-		readline.PcItem("0"),
-		readline.PcItem("1"),
-		readline.PcItem("2"),
-	),
+	pcCVarEnum("jk_botti_trace", "0", "1", "2"),
+	readline.PcItem("jk_botti_version"),
+
+	// hlmetrics
 	readline.PcItem("hlmetrics_port"),
 )
 
