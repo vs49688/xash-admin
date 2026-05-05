@@ -190,10 +190,10 @@ func netReader(conn net.Conn, ch chan<- Message, getNow func() time.Time) {
 	}
 }
 
-func netWriter(conn net.Conn, ch <-chan []byte, msgChan chan<- Message) {
+func netWriter(conn net.Conn, ch <-chan []byte, msgChan chan<- Message, getNow func() time.Time) {
 	for packet := range ch {
 		if _, err := conn.Write(packet); err != nil {
-			msgChan <- Message{Time: time.Now(), Error: err, IsWrite: true}
+			msgChan <- Message{Time: getNow(), Error: err, IsWrite: true}
 		}
 	}
 }
@@ -369,7 +369,7 @@ func run(ctx context.Context, command *cli.Command) error {
 
 	writerDone := make(chan struct{})
 	go func() {
-		netWriter(conn, cmdChan, msgChan)
+		netWriter(conn, cmdChan, msgChan, time.Now)
 		close(writerDone)
 	}()
 
