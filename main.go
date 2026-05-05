@@ -321,7 +321,7 @@ func run(ctx context.Context, command *cli.Command) error {
 	}
 
 	l, err := readline.NewEx(&readline.Config{
-		Prompt:                 "\u001B[31m(xash-admin) $\u001B[0m ",
+		Prompt:                 "\u001B[31m(rcon) $\u001B[0m ",
 		HistoryFile:            historyFile,
 		DisableAutoSaveHistory: false,
 		AutoComplete:           completer,
