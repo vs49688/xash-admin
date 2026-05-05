@@ -63,10 +63,16 @@ var completer = readline.NewPrefixCompleter(
 	pcCVarEnum("maps", "*"),
 	readline.PcItem("status"),
 	readline.PcItem("serverinfo"),
+	readline.PcItem("mapcyclefile"),
 
 	pcCVar01("sv_aim"),
+	pcCVar01("sv_allowdownload"),
+	pcCVar01("sv_allowupload"),
+	pcCVar01("sv_busters"),
 	pcCVar01("sv_cheats"),
+	pcCVarEnum("sv_gravity", "800"),         // 800 = Default
 	pcCVarEnum("sv_maxspeed", "270", "320"), // 270 = MP default, 320 = SP default
+	pcCVarEnum("sv_stepsize", "18"),         //  18 = Default
 
 	pcCVar01("mp_autocrosshair"),
 	pcCVar01("mp_allowmonsters"),
