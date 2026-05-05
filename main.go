@@ -52,6 +52,7 @@ var completer = readline.NewPrefixCompleter(
 	// System completions
 	//
 	readline.PcItem("!!exit"),
+	readline.PcItem("!clear"),
 	readline.PcItem("!setpassword"),
 	readline.PcItem("!sleep"),
 
@@ -243,6 +244,12 @@ func repl(l *readline.Instance, password string, cmdChan chan<- []byte) {
 
 		case len(argv) > 0 && argv[0] == "!!exit":
 			cmdChan <- buildRCONMessage(password, "exit")
+
+		case len(argv) == 1 && argv[0] == "!clear":
+			_, _ = readline.ClearScreen(l)
+
+		case len(argv) > 0 && argv[0] == "!clear":
+			_, _ = fmt.Fprintf(l.Stdout(), "usage: !clear\n")
 
 		case len(argv) > 0 && argv[0] == "!sleep":
 			switch len(argv) {
