@@ -52,6 +52,7 @@ var completer = readline.NewPrefixCompleter(
 	// System completions
 	//
 	readline.PcItem("!!exit"),
+	readline.PcItem("!exit"),
 	readline.PcItem("!setpassword"),
 	readline.PcItem("!sleep"),
 
